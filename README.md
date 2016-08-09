@@ -1,7 +1,7 @@
 # cart-backend POC
 
 ## Platforms
-* [dropwizzard](dropwizzard/README.md)
-* [spark](spark/README.md)
-* [nodejs](node/README.md)
+* [dropwizzard](dropwizzard/cart-backend/README.md)
+* [spark](spark/cart-backend/README.md)
+* [nodejs](node/cart-backend/README.md)
 
