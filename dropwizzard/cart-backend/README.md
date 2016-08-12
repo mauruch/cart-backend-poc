@@ -4,7 +4,7 @@
 
 ## Application Structure
 
-**/main/java/com/mercadolibre/cart_backend/api: application agnostic REST API implementation
+**/main/java/com/mercadolibre/cart_backend/api**: application agnostic REST API implementation
 **/main/java/com/mercadolibre/cart_backend/core**: interface agnostic Task Location and Execution
 **/main/java/com/mercadolibre/cart_backend/cart**: cart business logic (consumes api and core)
 
