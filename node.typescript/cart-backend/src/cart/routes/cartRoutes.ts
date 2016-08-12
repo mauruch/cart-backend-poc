@@ -1,7 +1,7 @@
 import * as express from 'express';
 import Cart from '../../cart/entities/cart';
 import CartItem from '../../cart/entities/cartItem';
-import RequestParameters from '../../routes/requestParameters';
+import RequestParameters from '../../api/requestParameters';
 import TaskExecutorService from '../../core/services/taskExecutorService';
 
 export default class CartRoutes {
@@ -14,20 +14,22 @@ export default class CartRoutes {
     public register(): CartRoutes {
         this.router.get('/carts/:cartId', (req, res) => {
             let requestParameters: RequestParameters = this.getRequestParameters(req);
-
+            
             let cart: any = this.taskExecutorService.executeTask('getCart', requestParameters.apiClient, requestParameters.apiVersion, requestParameters.params);
             res.send(cart);
         });
 
         this.router.delete('/cartst/:cartId', (req, res) => {
             let requestParameters: RequestParameters = this.getRequestParameters(req);
-
-            res.status(200);
+            
+            this.taskExecutorService.executeTask('deleteCart', requestParameters.apiClient, requestParameters.apiVersion, requestParameters.params);
             res.end();
         });
 
         this.router.post('/carts/:cartId', (req, res) => {
             let requestParameters: RequestParameters = this.getRequestParameters(req);
+            
+            this.taskExecutorService.executeTask('addCartItem', requestParameters.apiClient, requestParameters.apiVersion, requestParameters.params);
             res.end();
         });
 
@@ -35,19 +37,23 @@ export default class CartRoutes {
             let requestParameters: RequestParameters = this.getRequestParameters(req);
             let statusKey: string = 'status';
             let status: string = req.params[statusKey];
-
+            requestParameters.params.set(statusKey, status);
+            
+            this.taskExecutorService.executeTask('deleteCartItems', requestParameters.apiClient, requestParameters.apiVersion, requestParameters.params);
             res.end();
         });
 
         this.router.put('/carts/:cartId/items/:itemId', (req, res) => {
             let requestParameters: RequestParameters = this.getRequestParameters(req);
 
+            this.taskExecutorService.executeTask('updateCartItem', requestParameters.apiClient, requestParameters.apiVersion, requestParameters.params);
             res.end();
         });
 
         this.router.delete('/carts/:cartId/items/:itemId', (req, res) => {
             let requestParameters: RequestParameters = this.getRequestParameters(req);
 
+            this.taskExecutorService.executeTask('deleteCartItem', requestParameters.apiClient, requestParameters.apiVersion, requestParameters.params);
             res.end();
         });
 
