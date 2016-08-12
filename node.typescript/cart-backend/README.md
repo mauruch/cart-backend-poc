@@ -1,4 +1,4 @@
-# node/express POC with TypeScript 2 (cart-backend)
+# node/express POC with TypeScript 1.8 (cart-backend)
 
 **This POC is a work in progress, the scope is not yet defined**
 

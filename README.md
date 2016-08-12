@@ -3,7 +3,7 @@
 ## Platforms
 * [dropwizzard](dropwizzard/cart-backend/)
 * [spark](spark/cart-backend/)
-* [nodejs](node/cart-backend/)
+* [node.typescript](node.typescript/cart-backend/)
 
 ## Proposed Task Discovery (alpha)
 
