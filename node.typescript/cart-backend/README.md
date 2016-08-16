@@ -4,9 +4,27 @@
 
 ## Application Structure
 
-**/src/api**: application agnostic REST API implementation
-**/src/core**: interface agnostic Task Location and Execution
-**/src/cart**: cart business logic (consumes api and core)
+ **/src/api**: application agnostic REST API implementation
+
+ **/src/core**: interface agnostic Task Location and Execution
+
+ **/src/cart**: cart business logic (consumes api and core)
+
+- /src/cart/routes/&lt;routeName&gt;
+- /src/cart/config/&lt;configName&gt;
+- /src/cart/tasks/&lt;taskName&gt;/&lt;taskName_VERSION&gt;
+- /src/cart/marshallers/&lt;marshallerName&gt;/&lt;marshallerName_VERSION&gt;
+- /src/cart/entities/&lt;entityName&gt;/&lt;entityName_VERSION&gt;
+
+## Constraints
+
+* Configurations are typed and each task selects a version
+* All configuration inherit from a base Application Configurations
+* Version resolution affects Tasks and Marshallers only
+ * The task is selected based on the endpoint and the client/version requested
+ * The entity used is selected internally by the task
+ * The marshaller is resolved primarily by the entity and the scoped by version if available
+* Still makes sense to filter by client type? Should this association be performed at declaration time, instead of maintaining a folder structure?
 
 ## Environment
 
@@ -29,12 +47,12 @@ typings install
 
 To build:
 ```bash
-gulp build
+npm run build
 ```
 
 To build:
 ```bash
-node lib/app.js
+npm run app
 ```
 
 ### Package and run

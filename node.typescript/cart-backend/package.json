@@ -12,10 +12,14 @@
     "lib"
   ],
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "build": "gulp build",
+    "app": "node lib/app.js"
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "es6-promise": "^3.2.1",
+    "express": "^4.14.0",
+    "semver": "^5.3.0"
   },
   "devDependencies": {
     "del": "2.0.2",

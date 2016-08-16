@@ -1,8 +1,9 @@
+import ClientInfo from './clientInfo';
+
 interface RequestParameters {
     cartId: string;
     itemId?: string;
-    apiClient: string;
-    apiVersion: string;
+    clientInfo: ClientInfo;
     params: Map<string, any>;
 }
 

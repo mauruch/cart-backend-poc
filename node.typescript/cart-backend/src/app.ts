@@ -15,6 +15,7 @@ class App {
 
     public start(): void {
         this.registerRoutes();
+        this.express.disable('etag');
         this.express.listen(this.port);
     }
 
