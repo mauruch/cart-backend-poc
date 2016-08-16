@@ -41,30 +41,47 @@ DELETE	/carts/{id}/items/{id}					Removes cartItem from cart
 
 GET existing cart
 ```bash
-http://localhost:3000/carts/666
+http://localhost:8666/carts/666
 ```
 
 GET non-existing cart
 ```bash
-http://localhost:3000/carts/404
+http://localhost:8666/carts/404
 ```
 
 GET validation error
 ```bash
-http://localhost:3000/carts/422
+http://localhost:8666/carts/422
 ```
 
 GET internal error
 ```bash
-http://localhost:3000/carts/500
+http://localhost:8666/carts/500
 ```
 
 CORS pre-flyght
 ```bash
-curl -H "Origin: http://some.com" -H "Access-Control-Request-Method: POST" -H "Access-Control-Request-Headers: X-Requested-With" -X OPTIONS -v http://localhost:3000
+curl -H "Origin: http://some.com" -H "Access-Control-Request-Method: POST" -H "Access-Control-Request-Headers: X-Requested-With" -X OPTIONS -v http://localhost:8666
 ```
 
 DELETE cart item (identifying client)
 ```bash
-curl -X DELETE -H "X-API-CLIENT:sono_io" -H "X-API-VERSION:23.56.782" http://localhost:3000/carts/666/items/111 -v
+curl -X DELETE -H "X-API-CLIENT:sono_io" -H "X-API-VERSION:23.56.782" http://localhost:8666/carts/666/items/111 -v
+```
+
+## Call different versions
+
+GET Cart/666 (first version)
+```bash
+curl -X GET -H "X-API-CLIENT:curl" -H "X-API-VERSION:1.0.0" http://localhost:8666/carts/666
+```
+
+GET Cart/666 (same task, same entity and different marshaller)
+```bash
+curl -X GET -H "X-API-CLIENT:curl" -H "X-API-VERSION:1.0.1" http://localhost:8666/carts/666
+```
+
+GET Cart/666 (with a different task, same entity and marshaller)
+```bash
+curl -X GET -H "X-API-CLIENT:curl" -H "X-API-VERSION:2.0.0" http://localhost:8666/carts/666
 ```
