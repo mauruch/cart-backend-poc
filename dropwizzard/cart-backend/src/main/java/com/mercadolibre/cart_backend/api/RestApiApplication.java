@@ -1,6 +1,6 @@
 package com.mercadolibre.cart_backend.api;
 
-import com.mercadolibre.cart_backend.cart.config.CartBackendConfiguration;
+import com.mercadolibre.cart_backend.api.config.ApiConfiguration;
 import com.mercadolibre.cart_backend.cart.resources.CartResource;
 import com.mercadolibre.cart_backend.core.services.TaskExecutorService;
 import com.mercadolibre.cart_backend.core.services.MarshallerLocatorService;
@@ -15,7 +15,7 @@ import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import java.util.EnumSet;
 
-public class RestApiApplication extends Application<CartBackendConfiguration> {
+public class RestApiApplication extends Application<ApiConfiguration> {
 
     public static void main(final String[] args) throws Exception {
         new RestApiApplication().run(args);
@@ -27,11 +27,11 @@ public class RestApiApplication extends Application<CartBackendConfiguration> {
     }
 
     @Override
-    public void initialize(final Bootstrap<CartBackendConfiguration> bootstrap) {
+    public void initialize(final Bootstrap<ApiConfiguration> bootstrap) {
     }
 
     @Override
-    public void run(final CartBackendConfiguration configuration, final Environment environment) {
+    public void run(final ApiConfiguration configuration, final Environment environment) {
 
         final FilterRegistration.Dynamic cors =
                 environment.servlets().addFilter("CORS", CrossOriginFilter.class);
@@ -46,7 +46,7 @@ public class RestApiApplication extends Application<CartBackendConfiguration> {
 
         // Register ClientVersionRequestFilter
         ClientVersionRequestFilter clientVersionRequestFilter = new ClientVersionRequestFilter();
-        clientVersionRequestFilter.setApiCurrentVersion("1.0.8");
+        clientVersionRequestFilter.setApiCurrentVersion("2.0.0");
         environment.jersey().register(clientVersionRequestFilter);
 
         // Register NullResponseFilter

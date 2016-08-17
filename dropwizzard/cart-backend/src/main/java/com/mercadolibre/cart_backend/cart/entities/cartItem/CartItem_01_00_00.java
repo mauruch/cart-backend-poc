@@ -1,16 +1,16 @@
-package com.mercadolibre.cart_backend.cart.entities;
+package com.mercadolibre.cart_backend.cart.entities.cartItem;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mercadolibre.cart_backend.core.entities.EntityBase;
 
-public class CartItem extends EntityBase {
+public class CartItem_01_00_00 extends EntityBase {
 
 	private String itemId;
 	private int itemQuantity;
 	private String itemDescription;
 	private double itemPrice;
 
-	public CartItem(String itemId, int itemQuantity, String itemDescription, double itemPrice) {
+	public CartItem_01_00_00(String itemId, int itemQuantity, String itemDescription, double itemPrice) {
 		this.itemId = itemId;
 		this.itemQuantity = itemQuantity;
 		this.itemDescription = itemDescription;

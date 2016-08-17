@@ -1,7 +1,8 @@
 package com.mercadolibre.cart_backend.cart.resources;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.mercadolibre.cart_backend.cart.entities.CartItem;
+import com.github.zafarkhaja.semver.Version;
+import com.mercadolibre.cart_backend.cart.entities.cartItem.CartItem_01_00_00;
 import com.mercadolibre.cart_backend.core.services.TaskExecutorService;
 import com.mercadolibre.cart_backend.api.resources.ResourceBase;
 
@@ -21,6 +22,8 @@ import java.util.Optional;
 public class CartResource extends ResourceBase {
 
 	private TaskExecutorService taskExecutorService;
+	private final String defaultClient = "web";
+	private final String currentVersion = "2.0.0";
 
 	public CartResource(TaskExecutorService taskExecutorService) {
 		this.taskExecutorService = taskExecutorService;
@@ -30,7 +33,9 @@ public class CartResource extends ResourceBase {
 	@Path("/{cartId}")
 	public Optional<ObjectNode> getCart(@PathParam("cartId") String cartId, @Context HttpHeaders httpHeaders) {
 		String client = httpHeaders.getHeaderString("X-API-CLIENT");
-		String version = httpHeaders.getHeaderString("X-API-VERSION");
+		client = client != null ? client : defaultClient;
+		String strVersion = httpHeaders.getHeaderString("X-API-VERSION");
+		Version version = Version.valueOf(strVersion != null ? strVersion : currentVersion);
 		Map<String, Object> params = new HashMap<>();
 		params.put("cartId", cartId);
 
@@ -45,7 +50,9 @@ public class CartResource extends ResourceBase {
 	@Path("/{cartId}")
 	public void deleteCart(@PathParam("cartId") String cartId, @Context HttpHeaders httpHeaders) {
 		String client = httpHeaders.getHeaderString("X-API-CLIENT");
-		String version = httpHeaders.getHeaderString("X-API-VERSION");
+		client = client != null ? client : defaultClient;
+		String strVersion = httpHeaders.getHeaderString("X-API-VERSION");
+		Version version = Version.valueOf(strVersion != null ? strVersion : currentVersion);
 		Map<String, Object> params = new HashMap<>();
 		params.put("cartId", cartId);
 
@@ -56,9 +63,11 @@ public class CartResource extends ResourceBase {
 
 	@POST
 	@Path("/{cartId}/items")
-	public void addCartItem(@PathParam("cartId") String cartId, CartItem cartItem, @Context HttpHeaders httpHeaders) {
+	public void addCartItem(@PathParam("cartId") String cartId, CartItem_01_00_00 cartItem, @Context HttpHeaders httpHeaders) {
 		String client = httpHeaders.getHeaderString("X-API-CLIENT");
-		String version = httpHeaders.getHeaderString("X-API-VERSION");
+		client = client != null ? client : defaultClient;
+		String strVersion = httpHeaders.getHeaderString("X-API-VERSION");
+		Version version = Version.valueOf(strVersion != null ? strVersion : currentVersion);
 		Map<String, Object> params = new HashMap<>();
 		params.put("cartId", cartId);
 		params.put("cartItem", cartItem);
@@ -70,9 +79,11 @@ public class CartResource extends ResourceBase {
 
 	@DELETE
 	@Path("/{cartId}/items")
-	public void deleteCartItems(@PathParam("cartId") String cartId, @QueryParam("status") CartItem.Status itemStatus, @Context HttpHeaders httpHeaders) {
+	public void deleteCartItems(@PathParam("cartId") String cartId, @QueryParam("status") CartItem_01_00_00.Status itemStatus, @Context HttpHeaders httpHeaders) {
 		String client = httpHeaders.getHeaderString("X-API-CLIENT");
-		String version = httpHeaders.getHeaderString("X-API-VERSION");
+		client = client != null ? client : defaultClient;
+		String strVersion = httpHeaders.getHeaderString("X-API-VERSION");
+		Version version = Version.valueOf(strVersion != null ? strVersion : currentVersion);
 		Map<String, Object> params = new HashMap<>();
 		params.put("cartId", cartId);
 		params.put("itemStatus", itemStatus);
@@ -84,9 +95,11 @@ public class CartResource extends ResourceBase {
 
 	@PUT
 	@Path("/{cartId}/items/{itemId}")
-	public void updateCartItem(@PathParam("cartId") String cartId, @PathParam("itemId") String itemId, CartItem cartItem, @Context HttpHeaders httpHeaders) {
+	public void updateCartItem(@PathParam("cartId") String cartId, @PathParam("itemId") String itemId, CartItem_01_00_00 cartItem, @Context HttpHeaders httpHeaders) {
 		String client = httpHeaders.getHeaderString("X-API-CLIENT");
-		String version = httpHeaders.getHeaderString("X-API-VERSION");
+		client = client != null ? client : defaultClient;
+		String strVersion = httpHeaders.getHeaderString("X-API-VERSION");
+		Version version = Version.valueOf(strVersion != null ? strVersion : currentVersion);
 		Map<String, Object> params = new HashMap<>();
 		params.put("cartId", cartId);
 		params.put("itemId", itemId);
@@ -101,7 +114,9 @@ public class CartResource extends ResourceBase {
 	@Path("/{cartId}/items/{itemId}")
 	public void deleteCartItem(@PathParam("cartId") String cartId, @PathParam("itemId") String itemId, @Context HttpHeaders httpHeaders) {
 		String client = httpHeaders.getHeaderString("X-API-CLIENT");
-		String version = httpHeaders.getHeaderString("X-API-VERSION");
+		client = client != null ? client : defaultClient;
+		String strVersion = httpHeaders.getHeaderString("X-API-VERSION");
+		Version version = Version.valueOf(strVersion != null ? strVersion : currentVersion);
 		Map<String, Object> params = new HashMap<>();
 		params.put("cartId", cartId);
 		params.put("itemId", itemId);

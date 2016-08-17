@@ -1,6 +1,7 @@
 package com.mercadolibre.cart_backend.core.services;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.github.zafarkhaja.semver.Version;
 import com.mercadolibre.cart_backend.core.MarshallerBase;
 import com.mercadolibre.cart_backend.core.TaskBase;
 import com.mercadolibre.cart_backend.core.entities.EntityBase;
@@ -21,7 +22,7 @@ public class TaskExecutorService {
 		this.marshallerLocatorService = marshallerLocatorService;
 	}
 
-	public ObjectNode executeTask(String taskName, String client, String version, Map<String, Object> params) {
+	public ObjectNode executeTask(String taskName, String client, Version version, Map<String, Object> params) {
 		TaskBase<EntityBase> task = taskLocatorService.get(taskName, client, version, params);
 
 		if (task == null) {
@@ -34,7 +35,7 @@ public class TaskExecutorService {
 			return null;
 		}
 
-		MarshallerBase<EntityBase> marshaller = marshallerLocatorService.get(entity);
+		MarshallerBase<EntityBase> marshaller = marshallerLocatorService.get(entity, client, version);
 
 		ObjectNode objectNode = marshaller.getJson(entity);
 

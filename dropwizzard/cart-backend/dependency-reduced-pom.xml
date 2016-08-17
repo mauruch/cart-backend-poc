@@ -57,8 +57,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>
@@ -103,6 +103,18 @@
               <version>2.10.3</version>
             </plugin>
           </reportPlugins>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <configuration>
+          <mainClass>com.mercadolibre.cart_backend.api.RestApiApplication</mainClass>
+          <arguments>
+            <argument>server</argument>
+            <argument>cart-backend.yml</argument>
+          </arguments>
         </configuration>
       </plugin>
     </plugins>

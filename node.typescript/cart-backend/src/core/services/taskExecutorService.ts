@@ -3,7 +3,7 @@ import MarshallerLocatorService from './marshallerLocatorService';
 import Entity from '../contracts/entity';
 import Task from '../contracts/task';
 import Marshaller from '../contracts/marshaller';
-import ClientInfo from '../../api/clientInfo'
+import ClientInfo from '../../api/clientInfo';
 
 export default class TaskExecutorService {
     constructor(public taskLocatorService: TaskLocatorService, public marshallerLocatorService: MarshallerLocatorService) { 

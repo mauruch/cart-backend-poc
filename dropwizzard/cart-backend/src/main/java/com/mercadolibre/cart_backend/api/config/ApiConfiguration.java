@@ -1,11 +1,11 @@
-package com.mercadolibre.cart_backend.cart.config;
+package com.mercadolibre.cart_backend.api.config;
 
 import io.dropwizard.Configuration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.*;
 import javax.validation.constraints.*;
 
-public class CartBackendConfiguration extends Configuration {
+public class ApiConfiguration extends Configuration {
     // TODO: implement service configuration
 
 	@NotEmpty
