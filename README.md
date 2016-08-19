@@ -85,3 +85,19 @@ GET Cart/666 (with a different task, same entity and marshaller)
 ```bash
 curl -X GET -H "X-API-CLIENT:curl" -H "X-API-VERSION:2.0.0" http://localhost:8666/carts/666
 ```
+## Serie de cambios basados en historial homes-backend
+
+1) web (default) [+1.0.0]
+* T: getHomeWidgetsTask_01_00_00
+* E: homeWidgets_01_00_00
+* M: homeWidgetsMarshaller_01_00_00
+
+2) task changes for native [+1.2.0]
+* T: native/getHomeWidgetsTask_01_02_00
+* E: native/homeWidgets_01_02_00
+
+3) task changes for native.android [+1.2.1]
+* T: native/android/getHomeWidgetsTask_01_02_01
+
+4) marshalling change for web (default) [+1.10.0]
+* M: homeWidgetsMarshaller_01_10_00

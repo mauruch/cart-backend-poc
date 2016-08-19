@@ -1,8 +1,9 @@
 import Task from '../../../core/contracts/task';
 import Void from '../../../core/entities/void';
+import { Promise } from 'es6-promise';
 
 export default class DeleteCartItemsTask_01_00_00 implements Task<Void> {
-    execute(params: Map<string, any>): Void {
-        return null;
+    public async execute(params: Map<string, any>): Promise<Void> {
+        return new Promise(()=> new Void());
     }
 }

@@ -7,7 +7,7 @@ import { Promise } from 'es6-promise';
 export default class GetCartTask_01_00_00 implements Task<Cart_01_00_00> {
     config: CartConfig_01_00_00 = new CartConfig_01_00_00();
 
-    execute(params: Map<string, any>): Cart_01_00_00 {
+    public async execute(params: Map<string, any>): Promise<Cart_01_00_00> {
         let cartId: string = params.get('cartId');
 
         if (cartId === '404') {

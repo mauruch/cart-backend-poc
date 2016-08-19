@@ -8,6 +8,9 @@ import AddCartItemTask_01_00_00 from '../../cart/tasks/addCartItemTask/addCartIt
 import DeleteCartItemsTask_01_00_00 from '../../cart/tasks/deleteCartItemsTask/deleteCartItemsTask_01_00_00';
 import UpdateCartItemTask_01_00_00 from '../../cart/tasks/updateCartItemTask/updateCartItemTask_01_00_00';
 import DeleteCartItemTask_01_00_00 from '../../cart/tasks/deleteCartItemTask/deleteCartItemTask_01_00_00';
+import GetHomeWidgetsTask_01_00_00 from '../../home/tasks/getHomeWidgetsTask/getHomeWidgetsTask_01_00_00';
+import GetHomeWidgetsTask_01_02_00 from '../../home/tasks/getHomeWidgetsTask/native/getHomeWidgetsTask_01_02_00';
+import GetHomeWidgetsTask_01_02_01 from '../../home/tasks/getHomeWidgetsTask/native/android/getHomeWidgetsTask_01_02_01';
 
 export default class TaskLocatorService {
     public get(taskName: string, apiClient: string, apiVersion: SemVer): Task<Entity> {
@@ -28,6 +31,14 @@ export default class TaskLocatorService {
 				return new UpdateCartItemTask_01_00_00();
 			case "deleteCartItem":
 				return new DeleteCartItemTask_01_00_00();
+			case "getHomeWidgets":
+				if (apiClient.startsWith('native.android') && apiVersion.compare(new SemVer('1.2.1')) >= 0) {
+					return new GetHomeWidgetsTask_01_02_01();
+				}
+				if (apiClient.startsWith('native') && apiVersion.compare(new SemVer('1.2.0')) >= 0) {
+					return new GetHomeWidgetsTask_01_02_00();
+				}
+				return new GetHomeWidgetsTask_01_00_00();
 			default:
 				return null;
 		}

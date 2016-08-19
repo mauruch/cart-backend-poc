@@ -22,30 +22,30 @@ export default class CartRoutes {
         this.router.get('/carts/:cartId', (req, res) => {
             let requestParameters: RequestParameters = this.getRequestParameters(req);
             
-            let cart: any = this.taskExecutorService.executeTask('getCart', requestParameters.clientInfo, requestParameters.params);
-            
-            // TODO: move to middleware
-            if (!cart) {
-                res.status(404);
-                res.end();
-                return;
-            }
+            this.taskExecutorService.executeTask('getCart', requestParameters.clientInfo, requestParameters.params)
+                .then(function(cart) {
+                    // TODO: move to middleware
+                    if (!cart) {
+                        res.status(404);
+                        res.end();
+                        return;
+                    }
 
-            res.send(cart);
+                    res.send(cart);
+                    res.end();
+                });
         });
 
         this.router.delete('/cartst/:cartId', (req, res) => {
             let requestParameters: RequestParameters = this.getRequestParameters(req);
             
-            this.taskExecutorService.executeTask('deleteCart', requestParameters.clientInfo, requestParameters.params);
-            res.end();
+            this.taskExecutorService.executeTask('deleteCart', requestParameters.clientInfo, requestParameters.params).then(res.end);
         });
 
         this.router.post('/carts/:cartId', (req, res) => {
             let requestParameters: RequestParameters = this.getRequestParameters(req);
             
-            this.taskExecutorService.executeTask('addCartItem', requestParameters.clientInfo, requestParameters.params);
-            res.end();
+            this.taskExecutorService.executeTask('addCartItem', requestParameters.clientInfo, requestParameters.params).then(res.end);
         });
 
         this.router.delete('/carts/:cartId/items', (req, res) => {
@@ -54,22 +54,19 @@ export default class CartRoutes {
             let status: string = req.params[statusKey];
             requestParameters.params.set(statusKey, status);
             
-            this.taskExecutorService.executeTask('deleteCartItems', requestParameters.clientInfo, requestParameters.params);
-            res.end();
+            this.taskExecutorService.executeTask('deleteCartItems', requestParameters.clientInfo, requestParameters.params).then(res.end);
         });
 
         this.router.put('/carts/:cartId/items/:itemId', (req, res) => {
             let requestParameters: RequestParameters = this.getRequestParameters(req);
 
-            this.taskExecutorService.executeTask('updateCartItem', requestParameters.clientInfo, requestParameters.params);
-            res.end();
+            this.taskExecutorService.executeTask('updateCartItem', requestParameters.clientInfo, requestParameters.params).then(res.end);
         });
 
         this.router.delete('/carts/:cartId/items/:itemId', (req, res) => {
             let requestParameters: RequestParameters = this.getRequestParameters(req);
 
-            this.taskExecutorService.executeTask('deleteCartItem', requestParameters.clientInfo, requestParameters.params);
-            res.end();
+            this.taskExecutorService.executeTask('deleteCartItem', requestParameters.clientInfo, requestParameters.params).then(res.end);
         });
 
         return this;
@@ -85,8 +82,8 @@ export default class CartRoutes {
             cartId: req.params['cartId'],
             itemId: req.params['itemId'] || null,
             clientInfo: new ClientInfo(
-                req.get('X-API-CLIENT') || this.defaultClient, 
-                req.get('X-API-VERSION') || this.latestVersion),
+                req.get('X-API-CLIENT-NAME') || this.defaultClient, 
+                req.get('X-API-CLIENT-VERSION') || this.latestVersion),
             params: new Map<string, any>()
         };
         /* tsslint:enable:no-string-literal */
