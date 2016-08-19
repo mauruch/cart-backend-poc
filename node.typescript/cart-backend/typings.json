@@ -2,6 +2,7 @@
   "name": "cart-backend",
   "dependencies": {
     "es6-promise": "registry:npm/es6-promise#3.0.0+20160723033700",
+    "lodash": "registry:npm/lodash#4.0.0+20160723033700",
     "mime": "registry:npm/mime#1.3.0+20160723033700",
     "semver": "registry:npm/semver#5.0.0+20160723033700"
   },

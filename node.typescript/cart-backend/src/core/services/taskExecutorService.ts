@@ -4,28 +4,29 @@ import Entity from '../contracts/entity';
 import Task from '../contracts/task';
 import Marshaller from '../contracts/marshaller';
 import ClientInfo from '../../api/clientInfo';
+import { Promise } from 'es6-promise';
 
 export default class TaskExecutorService {
     constructor(public taskLocatorService: TaskLocatorService, public marshallerLocatorService: MarshallerLocatorService) { 
     }
 
-    public executeTask(taskName: string, clientInfo: ClientInfo, params: Map<string, any>): any {
+    public async executeTask(taskName: string, clientInfo: ClientInfo, params: Map<string, any>): Promise<any> {
         let task: Task<Entity> = this.taskLocatorService.get(taskName, clientInfo.name, clientInfo.version);
 
         if (!task) {
             throw new Error(`Cannot find task ${taskName}`);
         }
 
-        let entity: Entity = task.execute(params);
+        let entity: Entity = await task.execute(params);
 
         if (!entity) {
-            return null;
+            return Promise.resolve(null);
         }
 
-        let marshaller: Marshaller<Entity> = this.marshallerLocatorService.get(entity, clientInfo.version);
+        let marshaller: Marshaller<Entity> = this.marshallerLocatorService.get(entity, clientInfo.name, clientInfo.version);
 
         let json: any = marshaller.getJson(entity);
 
-        return json;
+        return Promise.resolve(json);
     }
 }

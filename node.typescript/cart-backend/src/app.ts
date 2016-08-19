@@ -1,8 +1,10 @@
 import * as express from 'express';
-import CartRoutes from './cart/routes/cartRoutes';
 import TaskExecutorService from './core/services/taskExecutorService';
 import TaskLocatorService from './core/services/taskLocatorService';
 import MarshallerLocatorService from './core/services/marshallerLocatorService';
+
+import CartRoutes from './cart/routes/cartRoutes';
+import HomeRoutes from './home/routes/homeRoutes';
 
 class App {
     express: express.Express;
@@ -22,6 +24,9 @@ class App {
     private registerRoutes(): void {
         let cartRoutes = new CartRoutes(this.getTaskExecutorService()).register().getRouter();
         this.express.use('/', cartRoutes);
+
+        let homeRoutes = new HomeRoutes(this.getTaskExecutorService()).register().getRouter();
+        this.express.use('/', homeRoutes);
     }
 
     private getTaskExecutorService(): TaskExecutorService {
