@@ -14,11 +14,12 @@
   "scripts": {
     "test": "gulp test",
     "build": "gulp build",
-    "app": "node lib/app.js"
+    "app": "node dist/app.js"
   },
   "dependencies": {
     "es6-promise": "^3.2.1",
     "express": "^4.14.0",
+    "request": "^2.74.0",
     "semver": "^5.3.0"
   },
   "devDependencies": {
@@ -39,5 +40,5 @@
   "engines": {
     "node": ">=2.0.0"
   },
-  "typings": "./lib/cart-backend.d.ts"
+  "typings": "./dist/cart-backend.d.ts"
 }

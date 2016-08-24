@@ -2,7 +2,6 @@ import Entity from '../contracts/entity';
 import Task from '../contracts/task';
 import { SemVer } from 'semver';
 import GetCartTask_01_00_00 from '../../cart/tasks/getCartTask/getCartTask_01_00_00';
-import GetCartTask_02_00_00 from '../../cart/tasks/getCartTask/getCartTask_02_00_00';
 import DeleteCartTask_01_00_00 from '../../cart/tasks/deleteCartTask/deleteCartTask_01_00_00';
 import AddCartItemTask_01_00_00 from '../../cart/tasks/addCartItemTask/addCartItemTask_01_00_00';
 import DeleteCartItemsTask_01_00_00 from '../../cart/tasks/deleteCartItemsTask/deleteCartItemsTask_01_00_00';
@@ -20,7 +19,7 @@ export default class TaskLocatorService {
 				if (apiVersion.compare(new SemVer('2.0.0')) == -1) {
 					return new GetCartTask_01_00_00();
 				}
-				return new GetCartTask_02_00_00();
+				return new GetCartTask_01_00_00();
 			case "deleteCart":
 				return new DeleteCartTask_01_00_00();
 			case "addCartItem":

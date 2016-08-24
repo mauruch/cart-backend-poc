@@ -1,7 +1,5 @@
 import * as express from 'express';
 import { SemVer } from 'semver';
-import Cart from '../../cart/entities/cart/cart_01_00_00';
-import CartItem from '../../cart/entities/cartItem/cartItem_01_00_00';
 import RequestParameters from '../../api/requestParameters';
 import ClientInfo from '../../api/clientInfo';
 import TaskExecutorService from '../../core/services/taskExecutorService';
@@ -32,6 +30,10 @@ export default class CartRoutes {
                     }
 
                     res.send(cart);
+                    res.end();
+                })
+                .catch(function(error) {
+                    console.log(error);
                     res.end();
                 });
         });
