@@ -1,0 +1,73 @@
+{
+  "tasks": [
+    {
+      "id": "getItemTask",
+      "versions": [
+        {
+          "api_version": "+1.0.0",
+          "api_client": "web",
+          "task": {
+            "name": "getItemTask_01.00.00",
+            "parent": null
+          },
+          "entity": {
+            "name": "item_01.00.00",
+            "parent": null
+          },
+          "marshaller": {
+            "name": "itemMarshaller_01.00.00",
+            "parent": null
+          }
+        },
+        {
+          "api_version": "+1.2.0",
+          "api_client": "native",
+          "task": {
+            "name": "getItemTask_01.02.00",
+            "parent": "getItemTask_01.00.00"
+          },
+          "entity": {
+            "name": "item_01.02.00",
+            "parent": "item_01.00.00"
+          },
+          "marshaller": {
+            "name": "itemMarshaller_01.00.00",
+            "parent": null
+          }
+        },
+        {
+          "api_version": "+1.2.1",
+          "api_client": "android",
+          "task": {
+            "name": "getItemTask_01.02.01",
+            "parent": "getItemTask_01.02.00"
+          },
+          "entity": {
+            "name": "item_01.02.01",
+            "parent": "item_01.02.00"
+          },
+          "marshaller": {
+            "name": "itemMarshaller_01.00.00",
+            "parent": null
+          }
+        },
+        {
+          "api_version": "+1.10.0",
+          "api_client": "web",
+          "task": {
+            "name": "getItemTask_01.00.00",
+            "parent": null
+          },
+          "entity": {
+            "name": "item_01.00.00",
+            "parent": null
+          },
+          "marshaller": {
+            "name": "itemMarshaller_01.10.00",
+            "parent": null
+          }
+        }
+      ]
+    }
+  ]
+}

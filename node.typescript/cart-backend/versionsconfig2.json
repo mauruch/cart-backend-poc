@@ -1,0 +1,54 @@
+{
+  "tasks": [
+    {
+      "id": "getItemTask",
+      "api_client": "web",
+      "versions": [
+        {
+          "api_version": "+1.0.0",
+          "task": {
+            "name": "getItemTask_01.00.00"
+          },
+          "entity": {
+            "name": "item_01.00.00"
+          },
+          "marshaller": {
+            "name": "itemMarshaller_01.00.00"
+          },
+          "childs": [
+            {
+              "api_client": "native",
+              "versions": [
+                {
+                  "api_version": "+1.2.0",
+                  "task": {
+                    "name": "getItemTask_01.02.00"
+                  },
+                  "entity": {
+                    "name": "item_01.02.00"
+                  },
+                  "childs": [
+                    {
+                      "api_client": "android",
+                      "versions": [
+                        {
+                          "api_version": "+1.2.1",
+                          "task": {
+                            "name": "getItemTask_01.02.01"
+                          },
+                          "entity": {
+                            "name": "item_01.02.01"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
