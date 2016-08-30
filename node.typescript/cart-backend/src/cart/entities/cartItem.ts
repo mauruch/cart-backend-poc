@@ -1,6 +1,6 @@
-import Entity from '../../../core/contracts/entity';
-import Price_01_00_00 from '../price/Price_01_00_00';
-import Action_01_00_00 from '../action/Action_01_00_00'
+import Entity from '../../core/contracts/entity';
+import Price from './price';
+import Action from './action'
 
 interface CartItem extends Entity {
     id: string;
@@ -13,11 +13,11 @@ interface CartItem extends Entity {
     quantity: string;
     stock: string;
     discount_rate: string;
-    original_price: Price_01_00_00;
-    price: Price_01_00_00;
-    checkout_action: Action_01_00_00;
+    original_price: Price;
+    price: Price;
+    checkout_action: Action;
     disabled_label: string;
-    disabled_action: Action_01_00_00;
+    disabled_action: Action;
 }
 
 export default CartItem;

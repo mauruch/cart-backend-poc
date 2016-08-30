@@ -1,6 +1,6 @@
 import Marshaller from '../contracts/marshaller';
 import Entity from '../contracts/entity';
-import CartMarshaller_01_00_00 from '../../cart/marshallers/cartMarshaller/cartMarshaller_01_00_00';
+import CartMarshaller_01_00_00 from '../../cart/tasks/getCartTask/default/v01.00.00/cartMarshaller';
 import HomeWidgetsMarshaller_01_00_00 from '../../home/marshallers/homeWidgetsMarshaller/homeWidgetsMarshaller_01_00_00';
 import HomeWidgetsMarshaller_01_10_00 from '../../home/marshallers/homeWidgetsMarshaller/homeWidgetsMarshaller_01_10_00';
 import VoidMarshaller from '../marshallers/voidMarshaller';

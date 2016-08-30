@@ -1,15 +1,15 @@
-import Task from '../../../core/contracts/Task';
-import Cart_01_00_00 from '../../entities/cart/Cart_01_00_00';
-import CartItem_01_00_00 from '../../entities/cartItem/CartItem_01_00_00';
-import CartConfig_01_00_00 from '../../config/CartConfig_01_00_00';
+import Task from '../../../../../core/contracts/Task';
+import Cart from '../../../../entities/cart';
+import CartItem from '../../../../entities/cartItem';
+import CartConfig_01_00_00 from '../../../../config/CartConfig_01_00_00';
 import { Promise } from 'es6-promise';
-import CartService from '../../services/CartService';
-import UserService from '../../services/UserService';
-import ShippingService from '../../services/ShippingService';
-import LocalizationProvider from '../../../framework/i18n/LocalizationProvider';
+import CartService from '../../../../services/CartService';
+import UserService from '../../../../services/UserService';
+import ShippingService from '../../../../services/ShippingService';
+import LocalizationProvider from '../../../../../framework/i18n/LocalizationProvider';
 
-export default class GetCartTask_01_00_00 implements Task<Cart_01_00_00> {
-    config: CartConfig_01_00_00 = new CartConfig_01_00_00();
+export default class GetCartTask implements Task<Cart> {
+    config: CartConfig_01_00_00 = new CartConfig_01_00_00(); //TODO: ¿it requires versioning?
     cartService: CartService = new CartService();
     userService: UserService = new UserService();
     shippingService: ShippingService = new ShippingService();
@@ -20,7 +20,7 @@ export default class GetCartTask_01_00_00 implements Task<Cart_01_00_00> {
         "disabled_label": "eitiquetirijilla de deshabilitamientirijillo"
     });
 
-    public async execute(params: Map<string, any>): Promise<Cart_01_00_00> {
+    public async execute(params: Map<string, any>): Promise<Cart> {
         let self = this;
         let cartId: string = params.get('cartId');
         let userId: string = '83199529'; // params.get('userId'); // TODO: ????????
@@ -52,7 +52,7 @@ export default class GetCartTask_01_00_00 implements Task<Cart_01_00_00> {
         });
     }
 
-    protected bindCart(cartInfo: any): Cart_01_00_00 {
+    protected bindCart(cartInfo: any): Cart {
         let cart = {
             id: cartInfo.id,
             items: <any>[],
@@ -86,7 +86,7 @@ export default class GetCartTask_01_00_00 implements Task<Cart_01_00_00> {
         return cart;
     }
 
-    protected bindItem(item: any): CartItem_01_00_00 {
+    protected bindItem(item: any): CartItem {
         return {
             id: item.id,
             title: item.title,
