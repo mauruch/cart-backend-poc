@@ -23,9 +23,9 @@ gulp.task('update-tsconfig', 'Update files section in tsconfig.json', function (
   gulp.src(tsFilesGlob).pipe(tsconfig());
 });
 
-gulp.task('clean', 'Cleans the generated js files from lib directory', function () {
+gulp.task('clean', 'Cleans the generated js files from dist directory', function () {
   return del([
-    'lib/**/*'
+    'dist/**/*'
   ]);
 });
 
@@ -39,7 +39,7 @@ gulp.task('gen-def', 'Generate a single .d.ts bundle containing external module 
   return dtsGenerator.default({
     name: appName,
     project: '.',
-    out: './lib/' + appName + '.d.ts',
+    out: './dist/' + appName + '.d.ts',
     exclude: ['node_modules/**/*.d.ts', 'typings/**/*.d.ts']
   });
 });

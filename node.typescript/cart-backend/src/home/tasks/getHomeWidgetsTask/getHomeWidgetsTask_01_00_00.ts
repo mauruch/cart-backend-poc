@@ -27,6 +27,17 @@ export default class GetHomeWidgetsTask_01_00_00 implements Task<HomeWidgets_01_
             this.homeWidgetsService.getSiteInformation(),
             this.homeWidgetsService.getTermsAndConditions()
         ]);
+
+        /*
+        var categoriesPromise = this.homeWidgetsService.getCategories();
+        categoriesPromise.then(function(categories){
+            // do some with categories
+            let results = await Promise.all([
+                this.homeWidgetsService.getExhibitors(),
+                this.homeWidgetsService.getSiteInformation()
+            ]);
+        })
+        */
         
         let homeWidgets = new HomeWidgets_01_00_00();
         homeWidgets.exhibitors = serviceResults[0];
