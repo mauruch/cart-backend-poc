@@ -13,6 +13,7 @@ export class TreeVersion {
     root: Node;
     nodes: Map<string, Array<Map<string, string>>>;
     found: boolean = false;
+    taskFound: string;
     constructor() {
         this.nodes = new Map();
     }
@@ -56,19 +57,26 @@ export class TreeVersion {
             (clientLevel == currentNodeLevel && apiClient === currentNode.client)) {
 
             // Map { '2.0.0' => 'getCartTask_v02_00_00' }, Map { '2.5.0' => 'getCartTask_v02_05_00' } ]
-            let candidateByClient: Array<string> = [];
+            let candidateByClient: Array<Map<any, any>> = [];
+            let candidateVersionByClient: Array<string> = [];
             for (let versionData of currentNode.data) {
                 let taskVersion: string = versionData.keys().next().value;
                 if (semver.gte(apiVersion.version, taskVersion)) {
-                    candidateByClient.push(taskVersion);
+                    candidateByClient.push(versionData);
+                    candidateVersionByClient.push(taskVersion);
                 }
             }
             if (candidateByClient.length > 1) {
                 this.found = true;
-                console.log("task elegida: " + semver.maxSatisfying(candidateByClient, `>=0.0.0 <100.0.0`));
+                let versionFound: string = semver.maxSatisfying(candidateVersionByClient, `>=0.0.0 <100.0.0`);
+                for (let map of candidateByClient) {
+                    if (map.keys().next().value === versionFound) {
+                        this.taskFound = map.get(map.keys().next().value );
+                    }
+                }
             } else if (candidateByClient.length == 1) {
                 this.found = true;
-                console.log("task elegida: " + candidateByClient[0]);
+                this.taskFound = candidateByClient[0].get(candidateByClient[0].keys().next().value);
             } 
         }
     }

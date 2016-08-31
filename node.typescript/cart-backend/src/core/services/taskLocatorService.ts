@@ -19,15 +19,11 @@ export default class TaskLocatorService {
 		// let taskMap: Map<string, Array<Map<string, string>>> = new Map();
 		let treeVersion: TreeVersion = new TreeVersion();
         this.addVersionsToTree('src/cart/tasks/getCartTask', treeVersion);
-
 		treeVersion.buildTree();
 		treeVersion.findVersion(treeVersion.root, apiClient, apiVersion);
 
 		// let tasksByClient: string = taskMap.get(apiClient);
-		
-		// [0].get(apiVersion.versionTwoDigits);
-
-
+		console.log(treeVersion.taskFound);
 		return new DynamicClass('getCartTask_v01_00_00');
 
 	}
@@ -46,16 +42,9 @@ export default class TaskLocatorService {
 				let client = auxClient.substr(auxClient.lastIndexOf("/")+1, auxClient.length);
 				let taskName = path.parse(filePath).name;
 				if (taskName === 'getCartTask') {
-					// let array = taskMap.get(client);
-
 					let newVersion = new Map();
 					newVersion.set(TaskVersion.getApiFormat(version), taskName+`_${version}`);
 					treeVersion.addNode(new Node(newVersion, client));
-					// if (!array) {
-					// 	taskMap.set(client, [newVersion]);
-					// } else {
-					// 	array.push(newVersion);
-					// }
 				}
             } else if (stat.isDirectory()) {
                 self.addVersionsToTree(filePath, treeVersion);
